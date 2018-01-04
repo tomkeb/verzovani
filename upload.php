@@ -40,7 +40,6 @@ $file = "Anička šla do zelí.";
 $prop = new Proposal($file);
 $propStor = new ProposalStorage($prop->hash);
 echo $propStor->toDir;
-$prop->storageSetter();
 
 ?>
 </body>
