@@ -20,8 +20,8 @@ class Proposal
         if ($this->hashGenerated == 0)
         {
           $this->hash = hash('md5', $this->file);
-          return $this->hash;
           $this->hashGenerated = 1;
+          return $this->hash;
         }
         //kde je deklarovaná $this->hash ?? … nově v v úvodu třídy
         //co když tuto fci zavolám na stejném proposal dvakrát? … podruhé se nic nestane
