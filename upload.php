@@ -10,9 +10,8 @@ function loadClass($class)
 }
 
 $fileToUpload = "Halí belí, koně v zelí.";
-$user = "student PedF UK"; //chtěl bych new User();
-$toDir = "nahrane";
+$user = "student PedF UK"; //chtěl bych spíše něco jako new User();
 
-$prop = new Proposal ($user);
-$stor = new Storage ($prop->getHash());
-$prop->setStorage($stor);
+$proposal = new Proposal ($user);
+$storage = new Storage ($proposal->getHash());
+$proposal->setStorage($storage);
