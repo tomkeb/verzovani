@@ -5,6 +5,8 @@ namespace Model;
 class Proposal
 {
     protected $storage;
+
+    /** @var string */
     protected $hash = NULL;
 
     function __construct($fileToUpload, $user)
@@ -14,11 +16,12 @@ class Proposal
         $this->getHash();
     }
 
-    static public function generateHash(){
+    static public function generateHash(): string
+    {
         return hash('md5', uniqid());
     }
 
-    public function getHash()
+    public function getHash(): string
     {
         if ($this->hash === NULL) {
             $this->hash = self::generateHash();
