@@ -31,6 +31,7 @@ class Proposal
     protected function setStorage(Storage $storage)
     {
         $this->storage = $storage;
+        return $this;
     }
 
     protected function getStorage(): Storage
