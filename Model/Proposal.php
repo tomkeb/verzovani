@@ -5,7 +5,7 @@ namespace Model;
 class Proposal
 {
     protected $storage;
-    public $hash; // "Druhá třída bude pojmenovaná ProposalStorage, v konstruktoru přijímající jako parametr hash" – – – jak by mohla class Storage (či File) v konstruktoru přijímat jako parametr hash, kdyby zde byl protected?
+    public $hash;
     protected $hashGenerated = 0;
 
     function __construct($fileToUpload, $user)
@@ -23,8 +23,6 @@ class Proposal
           $this->hashGenerated = 1;
           return $this->hash;
         }
-        //kde je deklarovaná $this->hash ?? … nově v v úvodu třídy
-        //co když tuto fci zavolám na stejném proposal dvakrát? … podruhé se nic nestane
     }
 
     protected function setStorage()
