@@ -28,13 +28,13 @@ class Proposal
         return $this->hash;
     }
 
-    protected function setStorage(Storage $storage)
+    public function setStorage(Storage $storage)
     {
         $this->storage = $storage;
         return $this;
     }
 
-    protected function getStorage(): Storage
+    public function getStorage(): Storage
     {
         return $this->storage;
     }

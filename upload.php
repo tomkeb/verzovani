@@ -1,7 +1,6 @@
 <?php
 use Model\Proposal as Proposal;
 use Model\Storage as Storage;
-use Model\File as File;
 
 spl_autoload_register("loadClass");
 function loadClass($class)
@@ -11,11 +10,9 @@ function loadClass($class)
 }
 
 $fileToUpload = "Halí belí, koně v zelí.";
-$user = "student PedF UK";
+$user = "student PedF UK"; //chtěl bych new User();
 $toDir = "nahrane";
 
-$prop = new Proposal ($fileToUpload, $user);
-
-$stor = new Storage ($prop->hash, $toDir);
-
-$file = new File ($stor->toDir, $fileToUpload);
+$prop = new Proposal ($user);
+$stor = new Storage ($prop->getHash());
+$prop->setStorage($stor);
