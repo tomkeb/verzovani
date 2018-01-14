@@ -4,6 +4,7 @@ namespace Model;
 
 class Proposal
 {
+    /** @var Storage */
     protected $storage;
 
     /** @var string */
@@ -27,12 +28,12 @@ class Proposal
         return $this->hash;
     }
 
-    protected function setStorage()
+    protected function setStorage(Storage $storage)
     {
-        $this->storage = [$_SERVER["REQUEST_TIME_FLOAT"], $_SERVER["REMOTE_ADDR"], $this->user];
+        $this->storage = $storage;
     }
 
-    protected function getStorage()
+    protected function getStorage(): Storage
     {
         return $this->storage;
     }
