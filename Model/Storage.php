@@ -18,6 +18,6 @@ class Storage
         if (!file_exists($this->toDir)) {
             mkdir("$this->toDir", 0777, true);
         }
-        return $this->toDir;
+        return $this;
     }
 }
