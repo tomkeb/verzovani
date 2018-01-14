@@ -5,14 +5,14 @@ namespace Model;
 class Storage
 {
     /** @var string  */
-    public $toDir = "";
+    protected $toDir = "";
 
     function __construct(String $hash)
     {
         $this->setDir($hash);
     }
 
-    private function setDir(string $hash)
+    protected function setDir(string $hash)
     {
         $this->toDir = $this->toDir . DIRECTORY_SEPARATOR . $hash;
         if (!file_exists($this->toDir)) {
