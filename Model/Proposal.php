@@ -5,24 +5,21 @@ namespace Model;
 class Proposal
 {
     protected $storage;
-    public $hash;
-    protected $hashGenerated = 0;
+    protected $hash = NULL;
 
     function __construct($fileToUpload, $user)
     {
-      $this->file = $fileToUpload;
-      $this->user = $user;
-      $this->getHash();
+        $this->file = $fileToUpload;
+        $this->user = $user;
+        $this->getHash();
     }
 
-    private function getHash()
+    public function getHash()
     {
-        if ($this->hashGenerated == 0)
-        {
-          $this->hash = hash('md5', $this->file);
-          $this->hashGenerated = 1;
-          return $this->hash;
+        if ($this->hashGenerated === NULL) {
+            $this->hash = hash('md5', $this->file);
         }
+        return $this->hash;
     }
 
     protected function setStorage()
