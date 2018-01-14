@@ -14,10 +14,14 @@ class Proposal
         $this->getHash();
     }
 
+    static public function generateHash(){
+        return hash('md5', uniqid());
+    }
+
     public function getHash()
     {
-        if ($this->hashGenerated === NULL) {
-            $this->hash = hash('md5', $this->file);
+        if ($this->hash === NULL) {
+            $this->hash = self::generateHash();
         }
         return $this->hash;
     }
