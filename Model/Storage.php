@@ -14,7 +14,7 @@ class Storage
 
     private function setDir(string $hash)
     {
-        $this->toDir = $this->toDir . "/" . $hash;
+        $this->toDir = $this->toDir . DIRECTORY_SEPARATOR . $hash;
         if (!file_exists($this->toDir)) {
             mkdir("$this->toDir", 0777, true);
         }
