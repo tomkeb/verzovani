@@ -4,15 +4,29 @@ namespace Model;
 
 class File
 {
-  function __construct($toDir, $fileToUpload)
-  {
-    $this->toDir = $toDir;
-    $this->fileToUpload = $fileToUpload;
+    /** @var string */
+    protected $fileName;
 
-    echo "nahrání souboru: " . $fileToUpload;
+    function __construct(string $fileName)
+    {
+        $this->setFileName($fileName);
+    }
 
-    //$this->name = basename($this->fileToUpload);
-    //move_uploaded_file($this->fileToUpload["tmp_name"], "$this->toDir/$this->name");
+    /**
+     * @return string
+     */
+    public function getFileName(): string
+    {
+        return $this->fileName;
+    }
 
-  }
+    /**
+     * @param string $fileName
+     * @return File
+     */
+    public function setFileName(string $fileName): File
+    {
+        $this->fileName = $fileName;
+        return $this;
+    }
 }
