@@ -9,9 +9,8 @@ class Proposal
     /** @var string */
     protected $hash = NULL;
 
-    function __construct($fileToUpload, $user)
+    function __construct(User $user)
     {
-        $this->file = $fileToUpload;
         $this->user = $user;
         $this->getHash();
     }
