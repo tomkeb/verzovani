@@ -4,35 +4,37 @@ namespace Model;
 
 class Proposal
 {
+    /** @var Storage */
     protected $storage;
-    public $hash; // "Druhá třída bude pojmenovaná ProposalStorage, v konstruktoru přijímající jako parametr hash" – – – jak by mohla class Storage (či File) v konstruktoru přijímat jako parametr hash, kdyby zde byl protected?
-    protected $hashGenerated = 0;
 
-    function __construct($fileToUpload, $user)
+    /** @var string */
+    protected $hash = NULL;
+
+    function __construct(User $user)
     {
-      $this->file = $fileToUpload;
-      $this->user = $user;
-      $this->getHash();
+        $this->user = $user;
     }
 
-    private function getHash()
+    static public function generateHash(): string
     {
-        if ($this->hashGenerated == 0)
-        {
-          $this->hash = hash('md5', $this->file);
-          $this->hashGenerated = 1;
-          return $this->hash;
+        return hash('md5', uniqid());
+    }
+
+    public function getHash(): string
+    {
+        if ($this->hash === NULL) {
+            $this->hash = self::generateHash();
         }
-        //kde je deklarovaná $this->hash ?? … nově v v úvodu třídy
-        //co když tuto fci zavolám na stejném proposal dvakrát? … podruhé se nic nestane
+        return $this->hash;
     }
 
-    protected function setStorage()
+    public function setStorage(Storage $storage)
     {
-        $this->storage = [$_SERVER["REQUEST_TIME_FLOAT"], $_SERVER["REMOTE_ADDR"], $this->user];
+        $this->storage = $storage;
+        return $this;
     }
 
-    protected function getStorage()
+    public function getStorage(): Storage
     {
         return $this->storage;
     }

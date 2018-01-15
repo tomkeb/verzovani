@@ -4,21 +4,20 @@ namespace Model;
 
 class Storage
 {
-    public $toDir;
+    /** @var string  */
+    protected $toDir = "";
 
-    function __construct($hash, $toDir)
+    function __construct(String $hash)
     {
-        $this->toDir = $toDir;
         $this->setDir($hash);
     }
 
-    private function setDir($hash)
+    protected function setDir(string $hash)
     {
-        $hash = strval($hash);
-        $this->toDir = $this->toDir . "/" . $hash;
+        $this->toDir = $this->toDir . DIRECTORY_SEPARATOR . $hash;
         if (!file_exists($this->toDir)) {
             mkdir("$this->toDir", 0777, true);
         }
-        return $this->toDir;
+        return $this;
     }
 }
