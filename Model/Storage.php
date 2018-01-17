@@ -5,9 +5,9 @@ namespace Model;
 class Storage
 {
     /** @var string  */
-    protected $toDir = "";
+    protected $toDir = "hokusypokusy";
 
-    function __construct(String $hash)
+    public function __construct(String $hash)
     {
         $this->setDir($hash);
     }
@@ -19,5 +19,12 @@ class Storage
             mkdir("$this->toDir", 0777, true);
         }
         return $this;
+    }
+
+    public function upload(array $filesPaths)
+    {
+      foreach ($filesPaths as $key => $value) {
+        file_put_contents($this->toDir . DIRECTORY_SEPARATOR . $filesPaths[$key], file_get_contents($filesPaths[$key]));
+      }
     }
 }
