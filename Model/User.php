@@ -37,7 +37,7 @@ class User
     return $this;
   }
 
-  public function getPersonName(string $personName): string
+  public function getPersonName(): string
   {
     return $this->personName;
   }
