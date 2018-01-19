@@ -4,7 +4,7 @@ namespace Model;
 
 class Storage
 {
-    /** @var string  */
+    /** @var string */
     protected $toDir = "hokusypokusy";
 
     public function __construct(String $hash)
@@ -21,10 +21,13 @@ class Storage
         return $this;
     }
 
-    public function upload(array $filesPaths)
+    public function getPath($filename): string
     {
-      foreach ($filesPaths as $key => $value) {
-        file_put_contents($this->toDir . DIRECTORY_SEPARATOR . $filesPaths[$key], file_get_contents($filesPaths[$key]));
-      }
+        return $this->getBaseDir() . DIRECTORY_SEPARATOR . $filename;
+    }
+
+    public function getBaseDir(): string
+    {
+        return $this->toDir;
     }
 }
