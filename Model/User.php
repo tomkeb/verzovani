@@ -9,14 +9,6 @@ class User
   protected $login;
   protected $ip;
 
-  public function __construct(string $mail, string $personName, int $login, string $ip)
-  {
-    $this->setLogin($login);
-    $this->setMail($mail);
-    $this->setPersonName($personName);
-    $this->setIp($ip);
-  }
-
   public function setLogin($login): User
   {
     $this->login = $login;
