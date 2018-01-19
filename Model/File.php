@@ -12,16 +12,16 @@ class File
 
     public function __construct(string $fileName)
     {
-        $this->setName($fileName);
-        $this->setExtension();
-        $this->setEscapedFileName();
-        $this->setSize();
+        $this->setName($fileName)
+            ->setExtension()
+            ->setEscapedFileName()
+            ->setSize();
     }
 
-    public function setExtension(): string
+    public function setExtension(): File
     {
         $this->extension = pathinfo($this->name, PATHINFO_EXTENSION);
-        return $this->extension;
+        return $this;
     }
 
     public function getExtension(): string
@@ -34,10 +34,10 @@ class File
         return $this->escapedFileName;
     }
 
-    public function setEscapedFileName(): string
+    public function setEscapedFileName(): File
     {
         $this->escapedFileName = pathinfo($this->name, PATHINFO_FILENAME);
-        return $this->escapedFileName;
+        return $this;
     }
 
     public function getSize(): int
