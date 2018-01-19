@@ -7,14 +7,12 @@ class File
     /** @var string */
     protected $name;
     protected $extension;
-    protected $escapedFileName;
     protected $size;
 
     public function __construct(string $fileName)
     {
         $this->setName($fileName)
             ->setExtension()
-            ->setEscapedFileName()
             ->setSize();
     }
 
@@ -31,13 +29,7 @@ class File
 
     public function getEscapedFileName(): string
     {
-        return $this->escapedFileName;
-    }
-
-    public function setEscapedFileName(): File
-    {
-        $this->escapedFileName = pathinfo($this->name, PATHINFO_FILENAME);
-        return $this;
+        return pathinfo($this->name, PATHINFO_FILENAME);
     }
 
     public function getSize(): int
