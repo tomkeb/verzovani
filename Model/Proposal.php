@@ -37,11 +37,6 @@ class Proposal
       return $this->filesPaths;
     }
 
-    public function prepareUpload()
-    {
-      $this->storage->upload($this->filesPaths);
-    }
-
     static public function generateHash(User $user, $timestamp): string
     {
         return hash('md5', hash('md5',$user->getMail()));
