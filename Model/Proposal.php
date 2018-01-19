@@ -14,15 +14,29 @@ class Proposal
     /** @var User */
     protected $user;
 
+    /** @var File[] */
+    protected $attachments = [];
+
     function __construct(User $user, array $file)
     {
         $this->user = $user;
         $this->setTimestamp();
     }
 
-    static public function generateHash(User $user, $timestamp): string
+    public function addAttachment(File $file): Proposal
     {
-        return hash('md5', hash('md5',$user->getMail()));
+        $this->attachments[] = $file;
+        return $this;
+    }
+
+    public function getAttachments(): array
+    {
+        return $this->attachments;
+    }
+
+    public function hasAttachments(): bool {
+        return (FALSE===empty($this->getAttachments()));
+        //nebo !empty($this->getAttachments()); ale takto je to prý blbuvzdornější - vyber si co chceš
     }
 
     public function getHash(): string
@@ -33,25 +47,30 @@ class Proposal
         return $this->hash;
     }
 
-    protected function setTimestamp()
+    static public function generateHash(User $user, $timestamp): string
     {
-      $this->timestamp = microtime();
-      return $this;
+        return hash('md5', hash('md5', $user->getMail()));
     }
 
     public function getTimestamp(): string
     {
-      return $this->timestamp;
+        return $this->timestamp;
     }
 
-    public function setStorage(Storage $storage)
+    protected function setTimestamp()
     {
-        $this->storage = $storage;
+        $this->timestamp = microtime();
         return $this;
     }
 
     public function getStorage(): Storage
     {
         return $this->storage;
+    }
+
+    public function setStorage(Storage $storage)
+    {
+        $this->storage = $storage;
+        return $this;
     }
 }
