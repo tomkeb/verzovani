@@ -11,30 +11,13 @@ class Proposal
     protected $hash = NULL;
     protected $timestamp;
 
-    /** array */
-    protected $filesPaths = array();
+    /** @var User */
+    protected $user;
 
     function __construct(User $user, array $file)
     {
         $this->user = $user;
-        $this->file = $file;
         $this->setTimestamp();
-    }
-
-    public function generateFilesPaths(array $file): array
-    {
-      foreach ($this->file as $key => $value) {
-        array_push($this->filesPaths, $file[$key]->getFileName());
-      }
-      return $this->filesPaths;
-    }
-
-    public function getFilesPaths(): array
-    {
-      if (empty($this->filesPaths)) {
-      $this->filesPaths = self::generateFilesPaths($this->file);
-      }
-      return $this->filesPaths;
     }
 
     static public function generateHash(User $user, $timestamp): string
