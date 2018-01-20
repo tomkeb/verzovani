@@ -5,67 +5,59 @@ namespace Model;
 class File
 {
     /** @var string */
-    protected $fileName;
-    protected $fileExtension;
-    protected $escapedFileName;
-    protected $fileSize;
+    protected $name;
+    protected $extension;
+    protected $size;
 
     public function __construct(string $fileName)
     {
-        $this->setFileName($fileName);
-        $this->setFileExtension();
-        $this->setEscapedFileName();
-        $this->setFileSize();
+        $this->setName($fileName)
+            ->setExtension()
+            ->setSize();
     }
 
-    public function setFileExtension(): string
+    public function setExtension(): File
     {
-        $this->fileExtension = pathinfo($this->fileName, PATHINFO_EXTENSION);
-        return $this->fileExtension;
+        $this->extension = pathinfo($this->name, PATHINFO_EXTENSION);
+        return $this;
     }
 
-    public function getFileExtension(): string
+    public function getExtension(): string
     {
-        return $this->fileExtension;
+        return $this->extension;
     }
 
     public function getEscapedFileName(): string
     {
-        return $this->escapedFileName;
+        return pathinfo($this->name, PATHINFO_FILENAME);
     }
 
-    public function setEscapedFileName(): string
+    public function getSize(): int
     {
-        $this->escapedFileName = pathinfo($this->fileName, PATHINFO_FILENAME);
-        return $this->escapedFileName;
+        return $this->size;
     }
 
-    public function getFileSize(): int
+    public function setSize(): File
     {
-        return $this->fileSize;
-    }
-
-    public function setFileSize(): File
-    {
-        $this->fileSize = filesize($this->fileName);
+        $this->size = filesize($this->name);
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getFileName(): string
+    public function getName(): string
     {
-        return $this->fileName;
+        return $this->name;
     }
     
     /**
-     * @param string $fileName
+     * @param string $name
      * @return File
      */
-    public function setFileName(string $fileName): File
+    public function setName(string $name): File
     {
-        $this->fileName = $fileName;
+        $this->name = $name;
         return $this;
     }
 }
